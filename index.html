@@ -319,8 +319,16 @@ menuBtn.addEventListener('click',()=>{const open=navEl.classList.toggle('open');
 navLinks.forEach(a=>a.addEventListener('click',()=>{navEl.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.setAttribute('aria-label','Open menu');}));
 
 </script>
-<!-- Download counter (GoatCounter): dashboard at onlineaccounting.goatcounter.com -->
-<script data-goatcounter="https://onlineaccounting.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<!-- Download counter (GoatCounter): counts template downloads only. Dashboard: onlineaccounting.goatcounter.com -->
+<script data-goatcounter="https://onlineaccounting.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="https://gc.zgo.at/count.js"></script>
+<script>
+// Count template downloads only (page visits are not counted)
+document.getElementById('tgrid').addEventListener('click', e => {
+  const a = e.target.closest('.dl');
+  if (!a || !window.goatcounter || !window.goatcounter.count) return;
+  window.goatcounter.count({ path: a.dataset.goatcounterClick, title: a.dataset.goatcounterTitle, event: true });
+});
+</script>
 
 </body>
 </html>
